@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-WubSpog comes pre-packaged with MagPie RSS, available at http://magpierss.sourceforget.net.
+WubSpog comes pre-packaged with MagPie RSS, available at http://magpierss.sourceforge.net.
 This is used to parse the RSS feeds received from HubSpot.
 
 To use WubSpog, place the WubSpog folder in your WordPress plugins directory. 
