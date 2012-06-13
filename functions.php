@@ -39,12 +39,17 @@ function post_excerpt($item)
     $text_excerpt = substr($text_excerpt, 0, 140);
     $last_space = strrpos($text_excerpt, " ", -1);
     $text_excerpt = substr($text_excerpt, 0, $last_space);
+    $image = stripStyle($image[0]);
     $ret = <<<HTML
+\n\n
 <div class="hubspot_blog_excerpt">
-<a href="$link">$title</a><br/>
-$image
-$text_excerpt ...<a href="$link">[read more]</a>
+    <a href="$link">$title</a><br/>
+    <div class="hubspot image">$image</div>
+    <div class="hubspot blurb">
+        $text_excerpt ...<a href="$link">[read more]</a>
+    </div>
 </div>
+\n\n
 HTML;
     return $ret;
 }
@@ -55,6 +60,37 @@ function parse_image($html)
     return $result[0];
 }
 
+function stripStyle($image)
+{
+    $styleTags = Array(
+        "style",
+        "height",
+        "width",
+        "float",
+        "class",
+        "id"
+    );
+    foreach ($styleTags as $tag)
+    {
+        $image = stripAttribute($tag,$image);
+    }
+    return $image;
+}
+
+function stripAttribute($attr, $str)
+{
+    $pattern = "/$attr=\"[^\"]*?\"/i";
+    $str =preg_replace($pattern, "", $str);
+    return $str;
+}
+
+function getStyle()
+{
+    global $EXCERPT_STYLE;
+    echo $EXCERPT_STYLE;
+}
+    
+    
 function textBetween($tag, $html)
 {
     $_pattern = $tag . "[^>]";
@@ -64,6 +100,5 @@ function textBetween($tag, $html)
 }
 
 
+
 ?>
-
-

@@ -1,5 +1,3 @@
-<html>
-<body>
 <?php
 
 /*
@@ -14,16 +12,29 @@
  * Note: This relies on Magpie RSS, available at magpierss.sourceforge.net
  */
 
+require_once("style.php");
 require_once("functions.php");
 include_magpie();
 
-$feed = get_feed("clearpoint");
-foreach ($feed->items as $item)
+function show_posts_with_tag($_args)
 {
-    //echo 
-    post_excerpt($item);
+    $defaults = Array(
+        "tag" => "clearpoint"
+    );
+    $args = shortcode_atts($defaults, $_args);
+    $feed = get_feed($args["tag"]);
+    ob_start();
+    get_style();
+    foreach ($feed->items as $item)
+    {
+        echo 
+        post_excerpt($item);
+    }
+    $html = ob_get_contents();
+    ob_end_clean();
+    return $html;
 }
-?>
-</body>
-</html>
 
+add_shortcode("hubspot_blogs", "show_posts_with_tag");
+
+?>
