@@ -1,0 +1,9 @@
+Wubspog is easy to use.
+
+Install it to your Plugins directory on WordPress.
+Set up the config file to have your HubSpot blog url, tabid, and moduleid (check your default RSS link for those).
+
+Then insert shortcode [hubspot_blog tag="fun blog entries"] into your post. Et voila.
+
+If you want to play with the style, edit style.php.
+
