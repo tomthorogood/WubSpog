@@ -1,9 +1,44 @@
-Wubspog is easy to use.
+    WubSpog is a WordPress plugin that easily integrates your HubSpot blog posts into WordPress via shortcode.
+    Copyright (C) 2012 Tom A. Thorogood
 
-Install it to your Plugins directory on WordPress.
-Set up the config file to have your HubSpot blog url, tabid, and moduleid (check your default RSS link for those).
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-Then insert shortcode [hubspot_blog tag="fun blog entries"] into your post. Et voila.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-If you want to play with the style, edit style.php.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+WubSpog comes pre-packaged with MagPie RSS, available at http://magpierss.sourceforget.net.
+This is used to parse the RSS feeds received from HubSpot.
+
+To use WubSpog, place the WubSpog folder in your WordPress plugins directory. 
+Edit the config file to reflect your blog's information: 
+
+For instance, if your blog RSS feed is:
+
+http://myHubSpotBlog.mySite.com/CMS/UI/Modules/BizBlogger/rss.aspx?tabid=12345&moduleID=67890, 
+You'll change the config variables to be as follows:
+$blog_domain = "myHubSpotBlog.mySite.com";
+$tabid="12345";
+$moduleid="67890";
+
+After that, all you need to do is activate the plugin, and plop the shortcode into your WordPress pages!
+
+[hubspot_blogs tag="coolstuff"] will pull in all posts from your feed tagged with "coolstuff".
+
+You can leave spaces as they are in the tags; the plugin will make them URL-friendly:
+[hubspot_blogs tag="my cool stuff"]
+
+If you wish to play with styling, feel free to edit style.php.  
+
+This is still very rough around the edges, but it does work!
+
+Example: http://www.clearpointccs.org/blog-list
+(The entries with photos are those rendered through the plugin)
 
