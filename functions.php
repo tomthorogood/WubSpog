@@ -43,8 +43,8 @@ function post_excerpt($item)
     $ret = <<<HTML
 \n\n
 <div class="hubspot_blog_excerpt">
-    <a href="$link">$title</a><br/>
     <div class="hubspot image">$image</div>
+    <a href="$link">$title</a><br/>
     <div class="hubspot blurb">
         $text_excerpt ...<a href="$link">[read more]</a>
     </div>

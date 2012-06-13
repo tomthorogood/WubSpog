@@ -19,7 +19,6 @@ $EXCERPT_STYLE = <<<CSS
 {
     width: 100px;
     float:right;
-    margin: 5px;
 }
 
 .hubspot.image img
