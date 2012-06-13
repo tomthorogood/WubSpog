@@ -14,7 +14,7 @@
 
 require_once("style.php");
 require_once("functions.php");
-include_magpie();
+include("wubspog_config.php");
 
 function show_posts_with_tag($_args)
 {
@@ -24,12 +24,12 @@ function show_posts_with_tag($_args)
     $args = shortcode_atts($defaults, $_args);
     $feed = get_feed($args["tag"]);
     ob_start();
-    get_style();
+    getStyle();
     foreach ($feed->items as $item)
     {
-        echo 
-        post_excerpt($item);
+        echo post_excerpt($item);
     }
+    
     $html = ob_get_contents();
     ob_end_clean();
     return $html;

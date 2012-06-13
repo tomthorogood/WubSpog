@@ -1,6 +1,7 @@
 <?php
 
 $EXCERPT_STYLE = <<<CSS
+<style>
 .hubspot_blog_excerpt
 {
     display:block;
@@ -30,5 +31,6 @@ $EXCERPT_STYLE = <<<CSS
 {
     display:block;
 }
+</style>
 CSS;
 ?>

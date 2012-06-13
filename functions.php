@@ -1,10 +1,8 @@
 <?php
-require_once("config.php");
+require_once("wubspog_config.php");
 function build_rss_url($tag)
 {
-    global $blog_domain;
-    global $moduleid;
-    global $tabid;
+    include("wubspog_config.php");
 
     $formatted_tag = str_replace(" ", "+", $tag);
 
@@ -15,14 +13,16 @@ function build_rss_url($tag)
 
 function include_magpie()
 {
-    global $magpie_version;
+    include("wubspog_config.php");
+    assert($magpie_version !="");
     $include_dir = "magpierss-$magpie_version";
     $module = $include_dir . "/rss_fetch.inc";
-    require_once($module);
+    include($module);
 }
 
 function get_feed($tag)
 {
+    include_magpie();
     $url = build_rss_url($tag);
     $rss = fetch_rss($url);
     //print_r($rss);
@@ -86,7 +86,7 @@ function stripAttribute($attr, $str)
 
 function getStyle()
 {
-    global $EXCERPT_STYLE;
+    include("style.php");
     echo $EXCERPT_STYLE;
 }
     
@@ -98,7 +98,5 @@ function textBetween($tag, $html)
     preg_match($pattern, $html, $results);
     return $results[1];
 }
-
-
 
 ?>
