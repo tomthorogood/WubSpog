@@ -40,6 +40,10 @@ function post_excerpt($item)
     $date_array = explode(" ", $item["pubdate"]);
     $date = "{$date_array[2]} {$date_array[1]}, {$date_array[3]}";
     $text_only = textBetween("p", $item["description"]);    // Everything between the <p>tags</p>
+    if ($text_only == "")
+    {
+        $text_only = $item["description"];
+    }
     $image = parse_image($item["description"]); // The first image found in the blog entry
     $text_excerpt = str_replace($image, "", $text_only);    // The 'text_only', with the image extracted
     $text_excerpt = substr($text_excerpt, 0, 140);  // Only the first 140 characters of the text
