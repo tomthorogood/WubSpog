@@ -33,7 +33,7 @@ $EXCERPT_STYLE = <<<CSS
 
 .hubspot.pubdate
 {
-    font-size: 10pt;
+    font-size: 8pt;
     font-family: sans-serif;
     display:block;
     color: #999;

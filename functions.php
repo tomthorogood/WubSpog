@@ -52,7 +52,7 @@ function post_excerpt($item)
     <a href="$link">$title</a><br/>
     <span class="hubspot pubdate">$date</span>
     <div class="hubspot blurb">
-        $text_excerpt ...<a href="$link">[read more]</a>
+        $text_excerpt ... <a href="$link">read more</a>
     </div>
 </div>
 \n\n
