@@ -36,6 +36,8 @@ function post_excerpt($item)
     
     $title = $item["title"];    // The blog post title
     $link = $item["link"];      // The link to the blog post
+    $date_array = explode(" ", $item["pubdate"]);
+    $date = "{$date_array[2]} {$date_array[1]}, {$date_array[3]}";
     $text_only = textBetween("p", $item["description"]);    // Everything between the <p>tags</p>
     $image = parse_image($item["description"]); // The first image found in the blog entry
     $text_excerpt = str_replace($image, "", $text_only);    // The 'text_only', with the image extracted
@@ -48,6 +50,7 @@ function post_excerpt($item)
 <div class="hubspot_blog_excerpt">
     <div class="hubspot image">$image</div>
     <a href="$link">$title</a><br/>
+    <span class="hubspot pubdate">$date</span>
     <div class="hubspot blurb">
         $text_excerpt ...<a href="$link">[read more]</a>
     </div>
