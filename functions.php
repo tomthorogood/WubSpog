@@ -100,11 +100,12 @@ function getStyle()
 function attempt_encoding_fix($str)
 {
     $pattern = "/\?[^\?]*?\?/i";
-    $results = preg_match($pattern, $str);
+    $results = Array();
+    preg_match($pattern, $str, $results);
     foreach ($results as $match)
     {
         $replace = str_replace("?","\"",$match);
-        $str = str_eplace($match, $replace, $str);
+        $str = str_replace($match, $replace, $str);
     }
     return $str;
 }
