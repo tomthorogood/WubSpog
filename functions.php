@@ -35,6 +35,7 @@ function post_excerpt($item)
 {
     
     $title = $item["title"];    // The blog post title
+    $title = attempt_encoding_fix($title);
     $link = $item["link"];      // The link to the blog post
     $date_array = explode(" ", $item["pubdate"]);
     $date = "{$date_array[2]} {$date_array[1]}, {$date_array[3]}";
@@ -95,7 +96,18 @@ function getStyle()
     include("style.php");
     echo $EXCERPT_STYLE;
 }
-    
+
+function attempt_encoding_fix($str)
+{
+    $pattern = "/\?[^\?]*?\?/i";
+    $results = preg_match($pattern, $str);
+    foreach ($results as $match)
+    {
+        $replace = str_replace("?","\"",$match);
+        $str = str_eplace($match, $replace, $str);
+    }
+    return $str;
+}
     
 function textBetween($tag, $html)
 {
