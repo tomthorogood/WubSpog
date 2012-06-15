@@ -1,11 +1,12 @@
 <?php
-require_once("wubspog_config.php");
 function build_rss_url($tag)
 {
     include("wubspog_config.php");
-
+    
+    // Replaces spaces with '+' signs to be compliant with HubSpot's application.
     $formatted_tag = str_replace(" ", "+", $tag);
 
+    /* The standard HubSpot URL, plus the attributes given by the user. */
     $url = "http://$blog_domain/CMS/UI/Modules/BizBlogger/rss.aspx?";
     $url .= "tabid=$tabid&moduleid=$moduleid&tag=$formatted_tag";
     return $url;
@@ -13,6 +14,7 @@ function build_rss_url($tag)
 
 function include_magpie()
 {
+    /* Fetches the Magpie RSS feed reader. */
     include("wubspog_config.php");
     assert($magpie_version !="");
     $include_dir = "magpierss-$magpie_version";
@@ -22,24 +24,25 @@ function include_magpie()
 
 function get_feed($tag)
 {
+    
     include_magpie();
     $url = build_rss_url($tag);
     $rss = fetch_rss($url);
-    //print_r($rss);
     return $rss;
 }
 
 function post_excerpt($item)
 {
-    $title = $item["title"];
-    $link = $item["link"];
-    $text_only = textBetween("p", $item["description"]);
-    $image = parse_image($item["description"]);
-    $text_excerpt = str_replace($image, "", $text_only);
-    $text_excerpt = substr($text_excerpt, 0, 140);
-    $last_space = strrpos($text_excerpt, " ", -1);
+    
+    $title = $item["title"];    // The blog post title
+    $link = $item["link"];      // The link to the blog post
+    $text_only = textBetween("p", $item["description"]);    // Everything between the <p>tags</p>
+    $image = parse_image($item["description"]); // The first image found in the blog entry
+    $text_excerpt = str_replace($image, "", $text_only);    // The 'text_only', with the image extracted
+    $text_excerpt = substr($text_excerpt, 0, 140);  // Only the first 140 characters of the text
+    $last_space = strrpos($text_excerpt, " ", -1);  // Don't cut off text in the middle of a word!
     $text_excerpt = substr($text_excerpt, 0, $last_space);
-    $image = stripStyle($image[0]);
+    $image = stripStyle($image[0]); // Remove special image formatted received from Hubspot.
     $ret = <<<HTML
 \n\n
 <div class="hubspot_blog_excerpt">
