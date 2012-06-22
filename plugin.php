@@ -35,6 +35,22 @@ function show_posts_with_tag($_args)
     return $html;
 }
 
-add_shortcode("hubspot_blogs", "show_posts_with_tag");
+function show_blog_titles($_args)
+{
+    $defaults = Array(
+        "tag" => "clearpoint",
+        "limit" => 5
+    );
+    $args = shortcode_atts($defaults, $_args);
+    $feed = get_feed($args["tag"]);
+    $html = "<ul>";
+    foreach ($feed->items as $item)
+    {
+        $html .= list_item_link($item);
+    }
+    $html .= "</ul>;
+}
 
+add_shortcode("hubspot_blogs", "show_posts_with_tag");
+add_shortcode("hubspot_titles", "show_blog_titles");
 ?>

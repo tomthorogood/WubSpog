@@ -31,6 +31,15 @@ function get_feed($tag)
     return $rss;
 }
 
+function list_item_link($item)
+{
+    $title = $item["title"];
+    $title = attempt_encoding_fix($title);
+    $link = $item["link"];
+    $html = "<li><a href=\"$link\" target=\"_blank\">$title</a></li>";
+    return $html;
+}
+
 function post_excerpt($item)
 {
     
