@@ -44,11 +44,15 @@ function show_blog_titles($_args)
     $args = shortcode_atts($defaults, $_args);
     $feed = get_feed($args["tag"]);
     $html = "<ul>";
+    $_limit = 0;
     foreach ($feed->items as $item)
     {
+        if ($_limit >= $args["limit"]) break;
         $html .= list_item_link($item);
+        $_limit++;
     }
-    $html .= "</ul>;
+    $html .= "</ul>";
+    return $html;
 }
 
 add_shortcode("hubspot_blogs", "show_posts_with_tag");
