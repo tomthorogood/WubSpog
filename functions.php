@@ -62,7 +62,7 @@ function post_excerpt($item)
     $ret = <<<HTML
 \n\n
 <div class="hubspot_blog_excerpt">
-    <div class="hubspot image">$image</div>
+    <div class="hubspot image" style="overflow:hidden;">$image</div>
     <a href="$link">$title</a><br/>
     <span class="hubspot pubdate">$date</span>
     <div class="hubspot blurb">
